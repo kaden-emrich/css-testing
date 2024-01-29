@@ -7,9 +7,16 @@
 
     <style>
 
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
         .tooltip-item {
             width: max-content;
             border: 1px solid black;
+            margin: 50px;
         }
 
         .tooltip {
@@ -17,38 +24,58 @@
             width: max-content;
             border: 1px solid blue;
             
-            transform: translate(50%, -50%);
+            /* transform: translate(-50%, -50%); */
             background-color: grey;
+
+            /* transition: 0.1s ease-out; */
         }
 
-        div.tt-hide div.tooltip {
+        .tt-hide div.tooltip {
             display: none;
         }
 
-        div.tt-show div.tooltip {
+        .tt-show div.tooltip {
             display: block;
         }
 
     </style>
 </head>
 <body>
-    <div class="tooltip-item tt-hide" onmouseover="showTooltip(this)" onmouseleave="hideTooltip(this)">
+    <button class="tooltip-item tt-hide" onmouseover="showTooltip(this)" onmouseleave="hideTooltip(this)">
         <p>Hello world!</p>
 
-        <div class="tooltip">
+        <div class="tooltip" id="main-tooltip">
             <p>This is a test</p>
         </div>
-    </div>
+    </button>
 </body>
 
 <script>
 
+document.addEventListener('mousemove', function(e) {
+    let body = document.querySelector('body');
+    let tt = document.getElementById('main-tooltip');
+    let left = e.pageX;
+    let top = e.pageY;
+    tt.style.left = left + "px";
+    tt.style.top = top + "px";
+});
+
 function showTooltip(element) {
+
+    // if(element.classList.contains('tt-show')) {
+    //     return;
+    // }
     element.classList.remove("tt-hide");
     element.classList.add("tt-show");
 }
 
 function hideTooltip(element) {
+
+    // if(element.classList.contains('tt-hide')) {
+    //     return;
+    // }
+
     element.classList.remove("tt-show");
     element.classList.add("tt-hide");
 }
