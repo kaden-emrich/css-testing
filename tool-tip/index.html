@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .tooltip-item {
+            width: max-content;
+            border: 1px solid black;
+        }
+
+        .tooltip {
+            position: absolute;
+            width: max-content;
+            border: 1px solid blue;
+            
+            transform: translate(50%, -50%);
+            background-color: grey;
+        }
+
+        div.tt-hide div.tooltip {
+            display: none;
+        }
+
+        div.tt-show div.tooltip {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="tooltip-item tt-hide" onmouseover="showTooltip(this)" onmouseleave="hideTooltip(this)">
+        <p>Hello world!</p>
+
+        <div class="tooltip">
+            <p>This is a test</p>
+        </div>
+    </div>
+</body>
+
+<script>
+
+function showTooltip(element) {
+    element.classList.remove("tt-hide");
+    element.classList.add("tt-show");
+}
+
+function hideTooltip(element) {
+    element.classList.remove("tt-show");
+    element.classList.add("tt-hide");
+}
+
+</script>
+
+</html>
